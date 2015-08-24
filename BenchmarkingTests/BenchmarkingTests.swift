@@ -22,9 +22,13 @@ let nsDict = NSDictionary(
 
 let swDict = ["MediaTypes": ["Movies": ["Die Hard 2": ["TagLine": "Die Harder."]]]]
 
+
 class BenchmarkingTests: XCTestCase {
     
     let repeats = 10000
+    
+    
+    // MARK: Nested tests
     
     func testSwiftCastingIfLet() {
         self.measureBlock() {
@@ -106,6 +110,9 @@ class BenchmarkingTests: XCTestCase {
             }
         }
     }
+    
+    
+    // MARK: Shallow tests
     
     func testShallowNSDictionaryValue() {
         self.measureBlock() {
