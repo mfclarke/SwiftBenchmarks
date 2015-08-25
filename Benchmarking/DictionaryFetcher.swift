@@ -18,9 +18,9 @@ class DictionaryFetcher {
     Pure NSDictionary the whole way, with no briding to Swift until the final value.
     */
     func fetchFromNSDictionaryWithoutAnyBridgingInIfLetChain(nsDict: NSDictionary) -> String {
-        if let theMediaTypes = nsDict["MediaTypes"] as? NSDictionary,
-            theMovies = theMediaTypes["Movies"] as? NSDictionary,
-            metadata = theMovies["Die Hard 2"] as? NSDictionary,
+        if let mediaTypes = nsDict["MediaTypes"] as? NSDictionary,
+            movies = mediaTypes["Movies"] as? NSDictionary,
+            metadata = movies["Die Hard 2"] as? NSDictionary,
             tagline = metadata["TagLine"] as? NSString {
                 return tagline as String
         }
@@ -32,9 +32,9 @@ class DictionaryFetcher {
     take full advantage of Swift's Swiftiness.
     */
     func fetchFromNSDictionaryByCastingToSwiftDictInIfLetChain(nsDict: NSDictionary) -> String {
-        if let theMediaTypes = nsDict["MediaTypes"] as? [String: AnyObject],
-            theMovies = theMediaTypes["Movies"] as? [String: AnyObject],
-            metadata = theMovies["Die Hard 2"] as? [String: AnyObject],
+        if let mediaTypes = nsDict["MediaTypes"] as? [String: AnyObject],
+            movies = mediaTypes["Movies"] as? [String: AnyObject],
+            metadata = movies["Die Hard 2"] as? [String: AnyObject],
             tagline = metadata["TagLine"] as? String {
                 return tagline
         }
@@ -45,9 +45,9 @@ class DictionaryFetcher {
     Pure strongly typed Swift Dictionary. No bridging or optional casting.
     */
     func fetchFromSwiftDictionaryWithoutAnyCastingInIfLetChain(swDict: MoviesDictionary) -> String {
-        if let theMediaTypes = swDict["MediaTypes"],
-            theMovies = theMediaTypes["Movies"],
-            metadata = theMovies["Die Hard 2"],
+        if let mediaTypes = swDict["MediaTypes"],
+            movies = mediaTypes["Movies"],
+            metadata = movies["Die Hard 2"],
             tagline = metadata["TagLine"] {
                 return tagline
         }
