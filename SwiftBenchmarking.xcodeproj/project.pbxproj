@@ -13,6 +13,8 @@
 		406166BB1B89B7FF0069476E /* SwiftBenchmarkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406166BA1B89B7FF0069476E /* SwiftBenchmarkingTests.swift */; };
 		408286B11B8C4859004610EA /* DictionaryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408286B01B8C4859004610EA /* DictionaryFetcher.swift */; };
 		408286B21B8C4944004610EA /* DictionaryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408286B01B8C4859004610EA /* DictionaryFetcher.swift */; };
+		40CA3E001B8D9C6E0030AE6C /* DictionaryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CA3DFF1B8D9C6E0030AE6C /* DictionaryBuilder.swift */; };
+		40CA3E011B8D9ECD0030AE6C /* DictionaryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CA3DFF1B8D9C6E0030AE6C /* DictionaryBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 		406166B91B89B7FF0069476E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		406166BA1B89B7FF0069476E /* SwiftBenchmarkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBenchmarkingTests.swift; sourceTree = "<group>"; };
 		408286B01B8C4859004610EA /* DictionaryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryFetcher.swift; sourceTree = "<group>"; };
+		40CA3DFF1B8D9C6E0030AE6C /* DictionaryBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 				406166AD1B89B7FF0069476E /* LaunchScreen.xib */,
 				406166A21B89B7FF0069476E /* Supporting Files */,
 				408286B01B8C4859004610EA /* DictionaryFetcher.swift */,
+				40CA3DFF1B8D9C6E0030AE6C /* DictionaryBuilder.swift */,
 			);
 			name = SwiftBenchmarking;
 			path = Benchmarking;
@@ -212,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40CA3E001B8D9C6E0030AE6C /* DictionaryBuilder.swift in Sources */,
 				406166A51B89B7FF0069476E /* AppDelegate.swift in Sources */,
 				408286B11B8C4859004610EA /* DictionaryFetcher.swift in Sources */,
 			);
@@ -221,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40CA3E011B8D9ECD0030AE6C /* DictionaryBuilder.swift in Sources */,
 				406166BB1B89B7FF0069476E /* SwiftBenchmarkingTests.swift in Sources */,
 				408286B21B8C4944004610EA /* DictionaryFetcher.swift in Sources */,
 			);

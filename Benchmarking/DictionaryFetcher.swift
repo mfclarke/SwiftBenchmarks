@@ -9,11 +9,47 @@
 import Foundation
 
 // Strongly typing the dictionary structure to let Swift's compiler fully optimise
-typealias MoviesDictionary = [String: [String: [String: [String: String]]]]
+typealias NestedSwiftDictionary = [String: [String: [String: [String: String]]]]
+
+// MARK: Shallow Fetch Methods
+
+class DictionaryFetcher {
+    
+    /**
+    Simple subscript single value fetch from NSDictionary
+    */
+    func shallowFetchFromNSDictionary(nsDict: NSDictionary) -> AnyObject {
+        if let value1: AnyObject = nsDict["Test1"] {
+            if let value2: AnyObject = nsDict["Test2"] {
+                if let value3: AnyObject = nsDict["Test3"] {
+                    return value3
+                }
+            }
+        }
+        fatalError("Value not fetched")
+    }
+    
+    /**
+    Simple subscript single value fetch from Swift Dictionary
+    */
+    func shallowFetchFromSwiftDictionary(swDict: [String: String]) -> AnyObject {
+        if let value1 = swDict["Test1"] {
+            if let value2 = swDict["Test2"] {
+                if let value3 = swDict["Test3"] {
+                    return value3
+                }
+            }
+        }
+        fatalError("Value not fetched")
+    }
+    
+}
+
 
 // MARK: Nested Fetch Methods
 
-class DictionaryFetcher {
+extension DictionaryFetcher {
+    
     /**
     Pure NSDictionary the whole way, with no briding to Swift until the final value.
     */
@@ -44,7 +80,7 @@ class DictionaryFetcher {
     /**
     Pure strongly typed Swift Dictionary. No bridging or optional casting.
     */
-    func fetchFromSwiftDictionaryWithoutAnyCastingInIfLetChain(swDict: MoviesDictionary) -> String {
+    func fetchFromSwiftDictionaryWithoutAnyCastingInIfLetChain(swDict: NestedSwiftDictionary) -> String {
         if let mediaTypes = swDict["MediaTypes"],
             movies = mediaTypes["Movies"],
             metadata = movies["Die Hard 2"],
@@ -67,7 +103,7 @@ class DictionaryFetcher {
     /**
     Pure Swift strongy typed optional chain
     */
-    func fetchFromSwiftDictionaryByUsingOptionalChain(swDict: MoviesDictionary) -> String {
+    func fetchFromSwiftDictionaryByUsingOptionalChain(swDict: NestedSwiftDictionary) -> String {
         if let value = swDict["MediaTypes"]?["Movies"]?["Die Hard 2"]?["TagLine"] {
             return value
         }
@@ -80,31 +116,6 @@ class DictionaryFetcher {
     func fetchFromNSDictionaryUsingValueForKeyPath(nsDict: NSDictionary) -> String {
         if let value = nsDict.valueForKeyPath("MediaTypes.Movies.Die Hard 2.TagLine") as? String {
             return value
-        }
-        fatalError("Value not fetched")
-    }
-    
-}
-
-// MARK: Shallow Fetch Methods
-
-extension DictionaryFetcher {
-    /**
-    Simple subscript single value fetch from NSDictionary
-    */
-    func shallowFetchFromNSDictionary(nsDict: NSDictionary) -> AnyObject {
-        if let mediaTypes: AnyObject = nsDict["MediaTypes"] {
-            return mediaTypes
-        }
-        fatalError("Value not fetched")
-    }
-    
-    /**
-    Simple subscript single value fetch from Swift Dictionary
-    */
-    func shallowFetchFromSwiftDictionary(swDict: MoviesDictionary) -> AnyObject {
-        if let mediaTypes = swDict["MediaTypes"] {
-            return mediaTypes
         }
         fatalError("Value not fetched")
     }

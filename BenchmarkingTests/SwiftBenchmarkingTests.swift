@@ -11,7 +11,7 @@ import XCTest
 
 class BenchmarkingTests: XCTestCase {
     
-    let nsDict = NSDictionary(
+    let nestedNSDict = NSDictionary(
         object: NSDictionary(
             object: NSDictionary(
                 object: NSDictionary(
@@ -22,40 +22,49 @@ class BenchmarkingTests: XCTestCase {
         forKey: "MediaTypes"
     )
     
-    let swDict: MoviesDictionary = ["MediaTypes": ["Movies": ["Die Hard 2": ["TagLine": "Die Harder."]]]]
-    
-    let dictionaryFetcher: DictionaryFetcher = DictionaryFetcher()
+    let nestedSwiftDict: NestedSwiftDictionary = ["MediaTypes": ["Movies": ["Die Hard 2": ["TagLine": "Die Harder."]]]]
     
     
     // MARK: Nested test
     
     func testNestedDictionaryFetchPerformance() {
+        let dictionaryFetcher = DictionaryFetcher()
         self.measureBlock() {
             for _ in 0...10000 {
                 // Set the basline: run test with this fetch method first and set the result as the baseline
-                self.dictionaryFetcher.fetchFromNSDictionaryWithoutAnyBridgingInIfLetChain(self.nsDict)
-                
+                dictionaryFetcher.fetchFromNSDictionaryWithoutAnyBridgingInIfLetChain(self.nestedNSDict)
+        
                 // Then comment out the baseline and comment these in one by one to compare
-//                self.dictionaryFetcher.fetchFromNSDictionaryByCastingToSwiftDictInIfLetChain(self.nsDict)
-//                self.dictionaryFetcher.fetchFromSwiftDictionaryWithoutAnyCastingInIfLetChain(self.swDict)
-//                self.dictionaryFetcher.fetchFromNSDictionaryByOptionalChain(self.nsDict)
-//                self.dictionaryFetcher.fetchFromSwiftDictionaryByUsingOptionalChain(self.swDict)
-//                self.dictionaryFetcher.fetchFromNSDictionaryUsingValueForKeyPath(self.nsDict)
+//                dictionaryFetcher.fetchFromNSDictionaryByCastingToSwiftDictInIfLetChain(self.nestedNSDict)
+//                dictionaryFetcher.fetchFromSwiftDictionaryWithoutAnyCastingInIfLetChain(self.nestedSwiftDict)
+//                dictionaryFetcher.fetchFromNSDictionaryByOptionalChain(self.nestedNSDict)
+//                dictionaryFetcher.fetchFromSwiftDictionaryByUsingOptionalChain(self.nestedSwiftDict)
+//                dictionaryFetcher.fetchFromNSDictionaryUsingValueForKeyPath(self.nestedNSDict)
             }
         }
     }
     
     
-    // MARK: Shallow test
+    // MARK: Shallow tests
     
-    func testShallowDictionaryFetchPerformance() {
+    func testShallowNSDictionaryFetchPerformance() {
+        let dictionaryFetcher = DictionaryFetcher()
+        let nsDict = DictionaryBuilder().buildShallowNSDictionary()
+        
         self.measureBlock() {
             for _ in 0...10000 {
-                // Set the basline: run test with this fetch method first and set the result as the baseline
-                self.dictionaryFetcher.shallowFetchFromNSDictionary(self.nsDict)
-                
-                // Then comment out the baseline and comment this one in to compare
-//                self.dictionaryFetcher.shallowFetchFromSwiftDictionary(self.swDict)
+                dictionaryFetcher.shallowFetchFromNSDictionary(nsDict)
+            }
+        }
+    }
+    
+    func testShallowSwiftDictionaryFetchPerformance() {
+        let dictionaryFetcher = DictionaryFetcher()
+        let swDict = DictionaryBuilder().buildShallowSwiftDictionary()
+        
+        self.measureBlock() {
+            for _ in 0...10000 {
+                dictionaryFetcher.shallowFetchFromSwiftDictionary(swDict)
             }
         }
     }
